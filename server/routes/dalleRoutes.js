@@ -16,7 +16,7 @@ const openai = new OpenAIApi(configuration);
 //   res.status(200).json({ message: "Hello from dalleRoutes!" });
 // });
 
-router.route("/").get(async (req, res) => {
+router.route("/").post(async (req, res) => {
   try {
     const { prompt } = req.body;
 
@@ -31,7 +31,7 @@ router.route("/").get(async (req, res) => {
     res.status(200).json({ photo: image });
   } catch (error) {
     console.error("Error creating image:", error);
-    res.status(500).json({ error: "Error creating image: " + error.message });
+    res.status(500).send( error ?.respoonse.data.error.message);
   }
 });
 
